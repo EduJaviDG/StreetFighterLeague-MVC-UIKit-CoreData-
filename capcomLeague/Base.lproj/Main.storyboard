@@ -21,7 +21,7 @@
                                 <rect key="frame" x="62" y="71" width="250" height="80"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hve-Us-cin">
-                                <rect key="frame" x="48" y="159" width="279" height="480"/>
+                                <rect key="frame" x="48" y="152" width="279" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ranking_cell" rowHeight="130" id="AX3-XB-3y4" customClass="MyCustomCell" customModule="capcomLeague" customModuleProvider="target">
@@ -132,6 +132,9 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e22-dd-tH7">
                                 <rect key="frame" x="321" y="73" width="30" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="Jio-jN-HfH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="36"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -143,42 +146,40 @@
                                     <constraint firstAttribute="height" constant="20" id="SLA-p8-XMU"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8Y-PB-zGk">
-                                <rect key="frame" x="307" y="108" width="60" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="RBl-hi-ZLP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8Y-PB-zGk">
+                                <rect key="frame" x="306" y="110" width="60" height="16"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e22-dd-tH7" secondAttribute="trailing" constant="24" id="1Ud-Xy-Y6n"/>
+                            <constraint firstItem="e22-dd-tH7" firstAttribute="leading" secondItem="2s5-16-HX0" secondAttribute="trailing" constant="9" id="1gw-HC-TY2"/>
                             <constraint firstItem="5Us-mG-vsM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="227" id="2jf-OA-nNG"/>
                             <constraint firstItem="5Us-mG-vsM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="31U-zJ-gAN"/>
-                            <constraint firstItem="E8Y-PB-zGk" firstAttribute="centerX" secondItem="e22-dd-tH7" secondAttribute="centerX" constant="1" id="DvC-hP-mcv"/>
-                            <constraint firstItem="E8Y-PB-zGk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="307" id="GIE-hN-CuP"/>
+                            <constraint firstItem="E8Y-PB-zGk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="306" id="4dy-Pp-sLI"/>
+                            <constraint firstItem="E8Y-PB-zGk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="46" id="6fd-wV-eI5"/>
+                            <constraint firstItem="e22-dd-tH7" firstAttribute="centerX" secondItem="E8Y-PB-zGk" secondAttribute="centerX" id="B0w-NK-utx"/>
                             <constraint firstItem="Hve-Us-cin" firstAttribute="top" secondItem="2s5-16-HX0" secondAttribute="bottom" constant="8" symbolic="YES" id="LSo-0o-NEZ"/>
-                            <constraint firstItem="e22-dd-tH7" firstAttribute="leading" secondItem="2s5-16-HX0" secondAttribute="trailing" constant="9" id="P6d-Pk-lQc"/>
                             <constraint firstItem="5Us-mG-vsM" firstAttribute="top" secondItem="Hve-Us-cin" secondAttribute="bottom" constant="8" symbolic="YES" id="RGv-TP-p19"/>
                             <constraint firstItem="2s5-16-HX0" firstAttribute="centerX" secondItem="Hve-Us-cin" secondAttribute="centerX" id="Rpz-xz-e1C"/>
                             <constraint firstItem="2s5-16-HX0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UEe-BN-irS"/>
-                            <constraint firstItem="Hve-Us-cin" firstAttribute="top" secondItem="E8Y-PB-zGk" secondAttribute="bottom" constant="35" id="aYh-Mj-oa4"/>
                             <constraint firstItem="2s5-16-HX0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="fSb-xn-g8R"/>
                             <constraint firstItem="2s5-16-HX0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="62" id="gyF-oJ-Ur1"/>
-                            <constraint firstItem="E8Y-PB-zGk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="iaV-c5-XPw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E8Y-PB-zGk" secondAttribute="trailing" constant="8" id="pwS-RS-ZLq"/>
-                            <constraint firstItem="Hve-Us-cin" firstAttribute="top" secondItem="e22-dd-tH7" secondAttribute="bottom" constant="43" id="r2a-EG-Q3u"/>
+                            <constraint firstItem="Hve-Us-cin" firstAttribute="top" secondItem="e22-dd-tH7" secondAttribute="bottom" constant="36" id="pIi-Wn-1n5"/>
                             <constraint firstItem="5Us-mG-vsM" firstAttribute="trailing" secondItem="Hve-Us-cin" secondAttribute="trailing" id="sIm-zy-AGe"/>
-                            <constraint firstItem="e22-dd-tH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="uCk-J3-lWb"/>
+                            <constraint firstItem="e22-dd-tH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="sbZ-aS-DDZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Us-mG-vsM" secondAttribute="trailing" constant="48" id="uFU-7P-FVh"/>
+                            <constraint firstItem="Hve-Us-cin" firstAttribute="top" secondItem="E8Y-PB-zGk" secondAttribute="bottom" constant="26" id="vOZ-KJ-Y5x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dZD-6C-OXH"/>
                     <connections>
                         <outlet property="addPlayer" destination="e22-dd-tH7" id="nRy-AA-71D"/>
+                        <outlet property="ladelAdd" destination="E8Y-PB-zGk" id="EWf-EN-bqx"/>
                         <outlet property="leagueTable" destination="Hve-Us-cin" id="hLA-nx-yvf"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="3lN-Zi-Qcp"/>
                     </connections>

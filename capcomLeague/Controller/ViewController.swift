@@ -12,13 +12,52 @@ import Foundation
 
 class ViewController: UIViewController{
     
-    @IBOutlet var mainView: UIView!
+    @IBOutlet var mainView: UIView!{
+        
+        
+        didSet{
+            
+            mainView.backgroundColor = UIColor(patternImage: UIImage(named:"cover_street_fighter")!)
+        }
+    }
     
-    @IBOutlet weak var leagueTable: UITableView!
+    @IBOutlet weak var leagueTable: UITableView!{
+        
+        
+        didSet {
+            
+            leagueTable.delegate = self
+            
+            leagueTable.backgroundColor = UIColor.clear
+        }
+    }
     
-    @IBOutlet weak var addPlayer: UIButton!
+    @IBOutlet weak var addPlayer: UIButton!{
+        
+        didSet{
+            
+            let gradient = gradientClass.getGradientLayer(bounds: addPlayer.bounds, startX: 0.00, endX: 1.00, startY: 0.50, endY: 0.50)
+            
+            addPlayer.setTitleColor(gradientClass.gradientColor(bounds: addPlayer.bounds, gradientLayer: gradient), for: .normal)
+            
+            
+            addPlayer.addTarget(self, action: #selector(clickAddPlayer), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var ladelAdd: UILabel! {
+        
+        didSet{
+            
+              let gradient = gradientClass.getGradientLayer(bounds: ladelAdd.bounds, startX: 0.50, endX: 0.50, startY: 1.00, endY: 0.00)
+            
+              ladelAdd.textColor = gradientClass.gradientColor(bounds: ladelAdd.bounds, gradientLayer: gradient)
+        }
+    }
     
     let manager = ManegerUserDefaults()
+    
+    let gradientClass = Gradient()
     
     let testList = TestListForLoad()
     
@@ -30,14 +69,8 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        configurationMainView()
-        
-        configurationTable()
         
         initPlayerList()
-        
-        configurateAddPlayer()
         
     }
     
@@ -67,28 +100,6 @@ class ViewController: UIViewController{
         _playerList = testList.listForLoad!
         
         playerList = testList.playersOrdered(players: _playerList)
-        
-    }
-    
-    private func configurationTable(){
-        
-        leagueTable.delegate = self
-        
-        leagueTable.backgroundColor = UIColor.clear
-        
-        
-    }
-    
-    private func configurationMainView(){
-        
-         mainView.backgroundColor = UIColor(patternImage: UIImage(named:"cover_street_fighter")!)
-        
-        
-    }
-    
-    private func configurateAddPlayer(){
-        
-        addPlayer.addTarget(self, action: #selector(clickAddPlayer), for: .touchUpInside)
         
     }
     
