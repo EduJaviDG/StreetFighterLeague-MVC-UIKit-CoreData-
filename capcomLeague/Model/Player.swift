@@ -30,7 +30,7 @@ struct Player: Codable {
         
         guard let flat = flatsList[country] else {
             
-            return ""
+            return country
             
         }
         
