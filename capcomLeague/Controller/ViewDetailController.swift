@@ -52,7 +52,7 @@ class ViewDetailController: UIViewController {
         
         labelCountry.text! = player.flatCountry(name: player.country.lowercased())!
         
-        labelCharecter.text! = player.characters
+        labelCharecter.text! = player.characters.capitalized
         
         labelDetailPoints.text! = String(player.points)
         
