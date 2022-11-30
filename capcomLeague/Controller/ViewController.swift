@@ -36,9 +36,9 @@ class ViewController: UIViewController{
         
         didSet{
             
-            let gradient = gradientClass.getGradientLayer(bounds: addPlayer.bounds, startX: 0.00, endX: 1.00, startY: 0.50, endY: 0.50)
+            let gradient = customGradient.getGradientLayer(bounds: addPlayer.bounds, startX: 0.00, endX: 1.00, startY: 0.50, endY: 0.50)
             
-            addPlayer.setTitleColor(gradientClass.gradientColor(bounds: addPlayer.bounds, gradientLayer: gradient), for: .normal)
+            addPlayer.setTitleColor(customGradient.gradientColor(bounds: addPlayer.bounds, gradientLayer: gradient), for: .normal)
             
             
             addPlayer.addTarget(self, action: #selector(clickAddPlayer), for: .touchUpInside)
@@ -49,15 +49,15 @@ class ViewController: UIViewController{
         
         didSet{
             
-              let gradient = gradientClass.getGradientLayer(bounds: ladelAdd.bounds, startX: 0.50, endX: 0.50, startY: 0.00, endY: 1.00)
+              let gradient = customGradient.getGradientLayer(bounds: ladelAdd.bounds, startX: 0.50, endX: 0.50, startY: 0.00, endY: 1.00)
             
-              ladelAdd.textColor = gradientClass.gradientColor(bounds: ladelAdd.bounds, gradientLayer: gradient)
+              ladelAdd.textColor = customGradient.gradientColor(bounds: ladelAdd.bounds, gradientLayer: gradient)
         }
     }
     
     let manager = ManegerUserDefaults()
     
-    let gradientClass = Gradient()
+    let customGradient = CustomGradient()
     
     let testList = TestListForLoad()
     
@@ -147,7 +147,7 @@ extension ViewController: UITableViewDataSource{
         
         cell.labelPoints?.text = String(playerList[indexPath.row].points)
         
-        cell.imageProfile.downloaded(from: playerList[indexPath.row].imageCharacters(name: playerList[indexPath.row].characters.lowercased()))
+        cell.imageCharacters.image = UIImage(named: playerList[indexPath.row].imageCharacters(name: playerList[indexPath.row].characters.lowercased()))
     
         return cell
         

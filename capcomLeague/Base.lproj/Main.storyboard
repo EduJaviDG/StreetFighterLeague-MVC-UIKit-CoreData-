@@ -31,7 +31,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="279" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-Vf-VuB" customClass="ImageViewModified" customModule="capcomLeague" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-Vf-VuB">
                                                     <rect key="frame" x="15" y="25" width="75" height="94"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="czN-oW-hKS"/>
@@ -117,7 +117,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="imageProfile" destination="GuV-Vf-VuB" id="caT-Vy-GIa"/>
+                                            <outlet property="imageCharacters" destination="GuV-Vf-VuB" id="lPg-nS-zbP"/>
                                             <outlet property="labelHandle" destination="vOf-hU-NE4" id="aYc-k5-BZZ"/>
                                             <outlet property="labelPlacing" destination="78m-Lo-ghX" id="PDa-60-iAb"/>
                                             <outlet property="labelPoints" destination="sdO-9G-hsM" id="zBs-AU-OXQ"/>

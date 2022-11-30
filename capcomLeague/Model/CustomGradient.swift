@@ -7,7 +7,7 @@
 //
 
 import UIKit
- class Gradient: NSObject {
+ class CustomGradient: NSObject {
     
     func getGradientLayer(bounds:CGRect, startX:Double, endX:Double, startY:Double, endY:Double) -> CAGradientLayer{
         let gradient = CAGradientLayer()

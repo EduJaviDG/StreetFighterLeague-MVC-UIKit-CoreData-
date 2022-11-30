@@ -10,7 +10,7 @@ import UIKit
 
 class MyCustomCell: UITableViewCell {
     
-    @IBOutlet weak var imageProfile: ImageViewModified!
+    @IBOutlet weak var imageCharacters: UIImageView!
     
     @IBOutlet weak var labelPlacing: UILabel!
     
@@ -33,7 +33,7 @@ class MyCustomCell: UITableViewCell {
         super.prepareForReuse()
         // Clear all content based views and their actions here
         
-        imageProfile.image = nil
+        imageCharacters.image = nil
         
         labelPlacing.text = ""
         

@@ -40,12 +40,12 @@ struct Player: Codable {
     
     func imageCharacters(name character: String) -> String{
         
-        let imagesCharacters = ["ryu": "https://images.gamebanana.com/img/ico/sprays/ryu_copy_copy.png",
-                                "ken": "https://images.gamebanana.com/img/ico/sprays/ken_version_2.png", "chun-li":"https://icons.veryicon.com/png/Game/Street%20Fighter%20IV/Chun%20li.png"]
+        let imagesCharacters = ["ryu": "characters_ryu",
+                                "ken": "characters_ken", "chun-li": "characters_chun_li"]
         
         guard let image = imagesCharacters[character] else {
             
-            return "https://d1nxzqpcg2bym0.cloudfront.net/google_play/com.skyjack.fighter/08910c56-2a8b-11e8-b7a1-1d77276e51a5/128x128"
+            return "characters_default"
             
         }
         

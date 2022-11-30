@@ -52,7 +52,6 @@ class MyCustomAlert: NSObject {
             guard let textFieldName = self.alert!.textFields![0] as? UITextField,
                 let nameToSave = textFieldName.text else{
                     
-
                     
                     return
             }
