@@ -49,7 +49,7 @@ class ViewController: UIViewController{
         
         didSet{
             
-              let gradient = gradientClass.getGradientLayer(bounds: ladelAdd.bounds, startX: 0.50, endX: 0.50, startY: 1.00, endY: 0.00)
+              let gradient = gradientClass.getGradientLayer(bounds: ladelAdd.bounds, startX: 0.50, endX: 0.50, startY: 0.00, endY: 1.00)
             
               ladelAdd.textColor = gradientClass.gradientColor(bounds: ladelAdd.bounds, gradientLayer: gradient)
         }
