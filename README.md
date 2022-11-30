@@ -18,4 +18,4 @@ Only the characters "Ryu", "Ken", "Chun-Li" have a picture, if you enter another
 
 Only the countries USA, Spain, Korea and Poland have a flag, if you enter another country only the country name will be shown.
 
-Also if you want a user image you must enter the link to the image, it is recommended that the image size does not exceed 256 x 256.
+Also if you want a user image you must enter the link to the image, it is recommended that the image size does not exceed 256 x 256 pixels.
