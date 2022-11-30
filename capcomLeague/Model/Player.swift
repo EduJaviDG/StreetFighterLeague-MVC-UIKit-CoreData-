@@ -26,7 +26,7 @@ struct Player: Codable {
     
     func flatCountry(name country: String) -> String? {
         
-        let flatsList = ["poland":"🇲🇨","eeuu":"🇺🇸","spain":"🇪🇸","korean":"🇰🇷"]
+        let flatsList = ["poland":"🇲🇨","usa":"🇺🇸","eeuu":"🇺🇸","spain":"🇪🇸","korea":"🇰🇷"]
         
         guard let flat = flatsList[country] else {
             
