@@ -22,7 +22,7 @@ struct Player: Codable {
     
     let profile: String
     
-    let imageCharcaters: String
+    let imageCharacters: String
     
     func flatCountry(name country: String) -> String? {
         
@@ -30,7 +30,7 @@ struct Player: Codable {
         
         guard let flat = flatsList[country] else {
             
-            return country
+            return country.capitalized
             
         }
         
@@ -50,6 +50,27 @@ struct Player: Codable {
         }
         
         return image
+        
+    }
+    
+    func levelOfPlayer(level value: Int) -> String{
+        
+        switch value {
+            
+            case 1...50 : return "⭐️"
+            
+            case 50...100 : return "⭐️⭐️"
+            
+            case 100...500: return "⭐️⭐️⭐️"
+            
+            case 500...1000: return "⭐️⭐️⭐️⭐️"
+            
+            case 1000...9999: return "⭐️⭐️⭐️⭐️⭐️"
+            
+            default: return ""
+            
+        }
+   
         
     }
 

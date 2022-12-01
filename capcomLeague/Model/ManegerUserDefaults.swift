@@ -42,7 +42,7 @@ class ManegerUserDefaults: NSObject {
         
         guard let data = UserDefaults.standard.value(forKey: key) as? Data else {
             
-            return Player(name: "", country: "", characters: "", points: 0, profile: "", imageCharcaters: "")
+            return Player(name: "", country: "", characters: "", points: 0, profile: "", imageCharacters: "")
         }
         
         

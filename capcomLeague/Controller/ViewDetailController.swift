@@ -22,6 +22,8 @@ class ViewDetailController: UIViewController {
     
     @IBOutlet weak var labelDetailPoints: UILabel!
     
+    @IBOutlet weak var labelLevel: UILabel!
+    
     let manager = ManegerUserDefaults()
     
     let KEY_MANAGER = "capcom"
@@ -55,6 +57,8 @@ class ViewDetailController: UIViewController {
         labelCharecter.text! = player.characters.capitalized
         
         labelDetailPoints.text! = String(player.points)
+        
+        labelLevel.text! = player.levelOfPlayer(level: player.points)
         
     }
 

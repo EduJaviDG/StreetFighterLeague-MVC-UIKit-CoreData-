@@ -8,9 +8,11 @@
 
 import UIKit
 
-class MyCustomAlert: NSObject {
+class MyCustomAlert: UIAlertController {
 
     var placeholdersList: [String]?
+    
+    var propertiesList: [String]?
     
     var saveData: UIAlertAction?
     
@@ -42,7 +44,8 @@ class MyCustomAlert: NSObject {
                 }
                 
                 textfield.placeholder = item
-              
+                
+                textfield.addTarget(self, action: #selector(self.validateNewPlayer), for: .editingChanged)
                 
             })
         }
@@ -51,7 +54,6 @@ class MyCustomAlert: NSObject {
             
             guard let textFieldName = self.alert!.textFields![0] as? UITextField,
                 let nameToSave = textFieldName.text else{
-                    
                     
                     return
             }
@@ -79,7 +81,9 @@ class MyCustomAlert: NSObject {
                     return
             }
             
-            self.savePlayer = Player(name: nameToSave, country: countryToSave, characters: charactersToSave, points: Int(pointsToSave) ?? 0, profile:profileToSave , imageCharcaters: charactersToSave)
+            self.propertiesList = [nameToSave, countryToSave, countryToSave, pointsToSave, profileToSave, charactersToSave]
+            
+            self.savePlayer = Player(name: nameToSave, country: countryToSave, characters: charactersToSave, points: Int(pointsToSave) ?? 0, profile: profileToSave , imageCharacters: charactersToSave)
             
             _list.append(self.savePlayer!)
             
@@ -88,16 +92,8 @@ class MyCustomAlert: NSObject {
         })
         
         self.saveData?.isEnabled = false
+        
         self.cancelData = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        observeTextFieldIsEmpty(textfield: (self.alert!.textFields?[0])!)
-        
-        observeTextFieldIsEmpty(textfield: (self.alert!.textFields?[1])!)
-        
-        observeTextFieldIsEmpty(textfield: (self.alert!.textFields?[2])!)
-        
-        observeTextFieldIsEmpty(textfield: (self.alert!.textFields?[3])!)
-
         
         self.alert!.addAction(self.saveData!)
         
@@ -110,6 +106,54 @@ class MyCustomAlert: NSObject {
         }
         
         
+    }
+    
+    @objc private func validateNewPlayer(){
+        
+       if let name = self.alert?.textFields![0].text, let country = self.alert?.textFields![1].text ,
+          let characters = self.alert?.textFields![2].text, let points = self.alert?.textFields![3].text{
+        
+               saveData?.isEnabled = validateName(name) && validateCountry(country) &&
+                validateCharacters(characters) && validatePoints(String(points))
+        
+        }
+       
+    }
+    
+    private func validateName(_ name: String ) -> Bool{
+        
+        let regex = "^(?![\\s.]+$)[a-zA-Z\\s.-]{1,10}$"
+        
+        return name.count > 0 && NSPredicate(format: "self matches %@",regex).evaluate(with: name)
+        
+        
+    }
+    
+    private func validateCountry(_ country: String) -> Bool{
+        
+        
+        let regex = "^(?![\\s.]+$)[a-zA-Z\\s.]{1,10}$"
+        
+        return country.count > 0  && NSPredicate(format: "self matches %@", regex).evaluate(with: country)
+        
+        
+    }
+    
+    private func validateCharacters(_ characters: String) -> Bool{
+        
+        
+        let regex = "^(?![\\s.-]+$)[a-zA-Z\\s.-]{1,10}$"
+        
+        return characters.count > 0 && NSPredicate(format: "self matches %@", regex).evaluate(with: characters)
+        
+        
+    }
+    
+    private func validatePoints(_ points: String) -> Bool{
+        
+        let regex = "^\\d{1,4}$"
+        
+        return points.count > 0 && NSPredicate(format: "self matches %@", regex).evaluate(with: points)
         
     }
     
