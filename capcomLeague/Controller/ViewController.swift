@@ -7,29 +7,37 @@
 //
 
 import UIKit
-
 import Foundation
+import CoreData
 
 class ViewController: UIViewController{
     
     @IBOutlet var mainView: UIView!{
-        
-        
+    
         didSet{
             
             mainView.backgroundColor = UIColor(patternImage: UIImage(named:"cover_street_fighter")!)
         }
+        
     }
     
     @IBOutlet weak var leagueTable: UITableView!{
-        
         
         didSet {
             
             leagueTable.delegate = self
             
             leagueTable.backgroundColor = UIColor.clear
+            
+            leagueTable.layer.borderWidth = 1.5
+            
+            leagueTable.layer.borderColor = UIColor.white.cgColor
+            
+            leagueTable.layer.cornerRadius = 10.0
+            
+            leagueTable.layer.masksToBounds = true
         }
+        
     }
     
     @IBOutlet weak var addPlayer: UIButton!{
@@ -53,37 +61,66 @@ class ViewController: UIViewController{
             
               ladelAdd.textColor = customGradient.gradientColor(bounds: ladelAdd.bounds, gradientLayer: gradient)
         }
+        
     }
     
-    let manager = ManegerUserDefaults()
+    @IBOutlet weak var searchBar: UISearchBar!{
+        
+        didSet{
+            
+            searchBar.delegate = self
+            
+            searchBar.layer.borderColor = UIColor.white.cgColor
+            
+            searchBar.layer.borderWidth = 1.0
+            
+            searchBar.layer.cornerRadius = 10
+            
+            searchBar.layer.masksToBounds = true
+            
+        }
+        
+    }
+    
+    var playersList: [Player] = []
+    
+    var _playersList: [Player] = []
+    
+    var filterData: [String]? = []
+    
+    var namePlayersList: [String] = []
+    
+    let manager = ManagerUserDafaults()
+    
+    let alert = UIAlertController()
     
     let customGradient = CustomGradient()
     
-    let testList = TestListForLoad()
+    let methods = AttributesMethods()
     
-    let customAlert = MyCustomAlert()
+    let dao = Dao()
     
-    var playerList = [Player]()
-    
-    var _playerList = [Player]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initPlayerList()
+        initView()
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "detail" {
+        if segue.identifier == KeyChain.KEY_SEGUE.rawValue {
             
             let index = leagueTable.indexPathForSelectedRow!
             
             let row = index.row
             
-            manager.saveData(player: (playerList[row]))
+            let selectPlayer = playersList[row]
+            
+            let playerDetail = PlayerDetail(name: selectPlayer.name!, country: selectPlayer.country!,characters: selectPlayer.characters!,points: Int(selectPlayer.points),profile: selectPlayer.profile ?? "")
+            
+            manager.saveData(player: playerDetail, key: KeyChain.KEY_MANAGER_DETAIL.rawValue)
             
         }
         
@@ -95,34 +132,48 @@ class ViewController: UIViewController{
         
     }
     
-    private func initPlayerList(){
+    override func viewWillAppear(_ animated: Bool) {
         
-        _playerList = testList.listForLoad!
+        initView()
         
-        playerList = testList.playersOrdered(players: _playerList)
+        self.leagueTable.reloadData()
         
     }
     
-    @objc func clickAddPlayer(){
- 
-        customAlert.initCustomAlert(view: self, player: _playerList){ (bisPlayerList) in
+    func initView(){
+        
+        let tempPlayerList = dao.reloadData(players: &_playersList)
+        
+        playersList = methods.playersOrdered(players: tempPlayerList)
+        
+        playersList.forEach{ player in
             
-            self._playerList = bisPlayerList
-            
-            self.playerList = self.testList.playersOrdered(players: self._playerList) 
-            
-            self.leagueTable.reloadData()
+            namePlayersList.append(player.name!)
             
             
         }
-
+        
     }
     
+    @objc func clickAddPlayer() {
+ 
+            alert.saveDataAlert(view: self, players: _playersList) { (list) in
+            
+            self._playersList = list
+            
+            self.playersList = self.methods.playersOrdered(players: self._playersList)
+            
+            self.initView()
+            
+            self.leagueTable.reloadData()
+            
+        }
+        
+    }
     
 }
 
-
-extension ViewController: UITableViewDataSource{
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -132,34 +183,74 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return playerList.count
+        return playersList.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: MyCustomCell = leagueTable.dequeueReusableCell(withIdentifier: "ranking_cell",for:indexPath)
-                                as! MyCustomCell
+        let players = playersList[indexPath.row]
+        
+        let cell: MyCustomCell = leagueTable.dequeueReusableCell(withIdentifier: KeyChain.KEY_CELL.rawValue,for:indexPath) as! MyCustomCell
     
-        cell.labelPlacing?.text = String(playerList.index(after: indexPath.row))
+        cell.labelPlacing?.text = String(playersList.index(after: indexPath.row))
         
-        cell.labelHandle?.text = playerList[indexPath.row].name
+        cell.labelHandle?.text = players.name
         
-        cell.labelPoints?.text = String(playerList[indexPath.row].points)
+        cell.labelPoints?.text = String(players.points)
         
-        cell.imageCharacters.image = UIImage(named: playerList[indexPath.row].imageCharacters(name: playerList[indexPath.row].characters.lowercased()))
+        cell.imageCharacters.image = UIImage(named: methods.imageCharacters(name: players.characters!.lowercased()))
     
         return cell
         
     }
 
     
+}
+
+
+extension ViewController: UISearchBarDelegate{
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if !searchText.isEmpty {
+            
+            filterData = namePlayersList.filter{ (item) -> Bool in
+                
+                return item.range(of: searchText, options: .caseInsensitive , range: nil, locale: nil) != nil
+                
+            }
+            
+            guard let playerFound = filterData?.first else{
+                
+                return
+            }
+            
+            let searchPlayer = dao.searchData(player: playerFound, player: &_playersList)
+            
+            _playersList = searchPlayer
+            
+            playersList = methods.playersOrdered(players: _playersList)
+            
+            leagueTable.reloadData()
+            
+        }
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
 
-
-extension ViewController: UITableViewDelegate{
-    
-    
     
 }
 

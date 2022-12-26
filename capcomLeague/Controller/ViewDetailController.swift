@@ -12,7 +12,7 @@ import Foundation
 
 class ViewDetailController: UIViewController {
     
-    @IBOutlet weak var imageProfile: ImageViewModified!
+    @IBOutlet weak var imageProfile: UIImageView!
     
     @IBOutlet weak var labelName: UILabel!
     
@@ -20,13 +20,37 @@ class ViewDetailController: UIViewController {
     
     @IBOutlet weak var labelCharecter: UILabel!
     
-    @IBOutlet weak var labelDetailPoints: UILabel!
-    
     @IBOutlet weak var labelLevel: UILabel!
     
-    let manager = ManegerUserDefaults()
+    @IBOutlet weak var updateButton: UIButton! {
+        
+        didSet{
+            
+            updateButton.addTarget(self, action: #selector(clickUpdateData), for: .touchUpInside)
+            
+        }
+        
+    }
     
-    let KEY_MANAGER = "capcom"
+    @IBOutlet weak var deleteButton: UIButton! {
+        
+        didSet{
+            
+            deleteButton.addTarget(self, action: #selector(clickDeleteData), for: .touchUpInside)
+            
+        }
+        
+    }
+    
+    var dataManager: ExternalDataManager!
+    
+    var flags = [String]()
+    
+    let manager = ManagerUserDafaults()
+    
+    let alert = UIAlertController()
+    
+    let methods = AttributesMethods()
     
     let TITLLE = "Warning"
     
@@ -41,25 +65,66 @@ class ViewDetailController: UIViewController {
     
     private func initializeDetail(){
         
-       let player = manager.recoverData(key: KEY_MANAGER)
+        dataManager = ExternalDataManager()
         
-        if player.name.isEmpty {
+        let player = manager.recoverData(key: KeyChain.KEY_MANAGER_DETAIL.rawValue)
+        
+        if player.name.isEmpty || player.country.isEmpty || player.characters.isEmpty {
             
-            manager.alertView(view:self, title: TITLLE, message: MESSAGE)
+            manager.alertView(view: self, title: TITLLE, message: MESSAGE)
+            
+        }
+        
+        let country = player.country.lowercased().trimmingCharacters(in: .whitespaces)
+        
+        dataManager.getCountry(path: country){ (data) in
+            
+            DispatchQueue.main.async {
+            
+                self.labelCountry.text! = data ?? country.capitalized
+                
+            }
+            
         }
         
         imageProfile.downloaded(from: player.profile)
         
         labelName.text! = player.name
         
-        labelCountry.text! = player.flatCountry(name: player.country.lowercased())!
-        
         labelCharecter.text! = player.characters.capitalized
         
-        labelDetailPoints.text! = String(player.points)
-        
-        labelLevel.text! = player.levelOfPlayer(level: player.points)
+        labelLevel.text! = methods.levelOfPlayer(level: Int(player.points))
         
     }
+    
+    @objc func clickUpdateData(){
+        
+        guard let playerName = labelName.text else{
+            
+            return
+        }
+        
+        self.alert.UpdateDataAlert(view: self, player: playerName, navigationController: self.navigationController!)
+        
+        
+        
+    }
+    
+    @objc func clickDeleteData(){
+        
+        
+        guard let playerName = labelName.text else {
+            
+            return
+            
+        }
+        
+        self.alert.deleteDataAlert(view: self, player: playerName, navigationController: self.navigationController!)
+        
+    }
+    
 
 }
+
+    
+
