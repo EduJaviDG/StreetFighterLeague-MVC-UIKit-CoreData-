@@ -10,9 +10,17 @@ Architecture pattern Model-View-Controller (MVC).
 
 Please use the simulator keyboard to avoid application crashes.
 
+The user interacts with a list of players.
+
+The user can add, update and delete players.
+
+Also the user can perform searches filtering by name and delete all players from the list.
+
 The list is automatically sorted by player points.
 
 The character roster includes all Super Street Fighter II characters: Cammy, Dee Jay, Fei Long, Thunder, Hawk, Akuma, Balrog,
 Blanka, Dhalsim, Honda, Guile, Ken, Bison, Ryu, Sagat, Vega, Zangief.
 
-If you want a user image you must enter the link to the image, it is recommended that the image size does not exceed 256 x 256 pixels.
+The detailed view will show the player's country flag and the stars awarded based on the score. 
+
+Also if you want a user image you must enter the link to the image, it is recommended that the image size does not exceed 256 x 256 pixels.
