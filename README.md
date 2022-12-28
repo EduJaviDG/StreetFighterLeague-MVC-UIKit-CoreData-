@@ -1,5 +1,13 @@
 # SFIILeague
 
+Xcode v10.1
+
+UIKit
+
+Swif 4.2
+
+Simulator Iphone 8 iOS 12.1
+
 List of players in a fictitious league of Street Fighters.
 
 TableView with detailView.
