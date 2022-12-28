@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				34A42AEF294A51E600D28FE0 /* ApiRest */,
-				34FEFEA529390D8D00DECCF0 /* CoreData */,
+				34FEFEA529390D8D00DECCF0 /* coredata */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -183,14 +183,14 @@
 			path = ApiRest;
 			sourceTree = "<group>";
 		};
-		34FEFEA529390D8D00DECCF0 /* CoreData */ = {
+		34FEFEA529390D8D00DECCF0 /* coredata */ = {
 			isa = PBXGroup;
 			children = (
 				34FEFEA129390D8300DECCF0 /* Player+CoreDataClass.swift */,
 				34FEFEA229390D8300DECCF0 /* Player+CoreDataProperties.swift */,
 				349228CA293CC696001DE95F /* Dao.swift */,
 			);
-			name = CoreData;
+			name = coredata;
 			path = "New Group";
 			sourceTree = "<group>";
 		};
