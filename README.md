@@ -26,7 +26,7 @@ Also the user can perform searches filtering by name and delete all players from
 
 The list is automatically sorted by player points.
 
-The character roster includes all Super Street Fighter II characters: Cammy, Dee Jay, Fei Long, Thunder, Hawk, Akuma, Balrog,
+The character roster includes all Super Street Fighter II characters: Cammy, Dee Jay, Fei Long, Hawk, Akuma, Balrog,
 Blanka, Dhalsim, Honda, Guile, Ken, Bison, Ryu, Sagat, Vega, Zangief.
 
 The detailed view will show the player's country flag and the stars awarded based on the score. 
