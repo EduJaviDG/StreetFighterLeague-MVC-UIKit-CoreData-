@@ -199,7 +199,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.labelPoints?.text = String(players.points)
         
-        cell.imageCharacters.image = UIImage(named: methods.imageCharacters(name: players.characters!.lowercased()))
+        cell.imageCharacters.image = UIImage(named: methods.imageCharacters(name: players.characters!.lowercased().trimmingCharacters(in: .whitespaces)
+            .replacingOccurrences(of: " ", with: "")))
     
         return cell
         
@@ -251,6 +252,5 @@ extension ViewController: UISearchBarDelegate{
         searchBar.resignFirstResponder()
     }
 
-    
 }
 

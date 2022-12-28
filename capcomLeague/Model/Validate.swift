@@ -32,16 +32,13 @@ class Validate  {
     
     private func validateCharacters(_ characters: String) -> Bool{
         
-        let charcatersList = ["ryu", "ken", "guile", "balrog", "zangief", "dhalsim", "blanka", "vega", "honda", "sagat", "bison", "feilong","deejay", "akuma", "camy", "chunli"]
+        let name = characters.lowercased()
+            .trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "")
         
-        return charcatersList.contains(characters)
+        let charactersList = ["ryu", "ken", "guile", "balrog", "zangief", "dhalsim", "blanka", "vega", "honda", "sagat", "bison", "feilong","deejay", "akuma", "camy", "chunli"]
         
-        //let regex = "^(?![\\s.-]+$)[a-zA-Z\\s.-]{1,10}$"
-        
-        //return characters.count > 0 && NSPredicate(format: "self matches %@", regex).evaluate(with: characters)
-        
-        
-        
+        return
+            charactersList.contains(name)
         
     }
     
@@ -102,15 +99,16 @@ class Validate  {
     
     private func validateUpdateCharacters(_ characters: String) -> Bool{
         
-        let charcatersList = ["ryu", "ken", "guile", "balrog", "zangief", "dhalsim", "blanka", "vega", "honda", "sagat", "bison", "feilong","deejay", "hawk", "akuma", "camy", "chunli"]
+        let name = characters.lowercased()
+            .trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "")
         
-        //let regex = "^(?![\\s.-]+$)[a-zA-Z\\s.-]{1,10}$"
+        let charactersList = ["ryu", "ken", "guile", "balrog", "zangief", "dhalsim", "blanka", "vega", "honda", "sagat", "bison", "feilong","deejay", "hawk", "akuma", "camy", "chunli"]
+        
+        
         
         if !characters.isEmpty{
             
-            //return characters.count > 0 && NSPredicate(format: "self matches %@", regex).evaluate(with: characters)
-            
-            return charcatersList.contains(characters)
+            return charactersList.contains(name)
             
         }
         
