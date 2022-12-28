@@ -42,11 +42,12 @@ public extension UIAlertController{
         }
         
         
-        let saveData = alertAction.saveAction(view: view, saveAlert: saveAlert, players: tempList){ (list) in
+        let saveData = alertAction.saveAction(view: view, saveAlert: saveAlert,
+            players: tempList){ (list) in
             
-            completion(list)
+                completion(list)
             
-        }
+            }
         
         saveData.isEnabled = false
         
@@ -157,9 +158,7 @@ public extension UIAlertController{
             
         }
         
-        
     }
-    
     
 }
 
